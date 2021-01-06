@@ -22,19 +22,19 @@ function defDate() {
     var date = new Date();
     var nday = date.getDay();
     switch (nday) {
-        case 1:
-            nday = "Mon"
-        case 2:
-            nday = "Tue"
-        case 3:
-            nday = "Wed"
-        case 4:
-            nday = "Thu"
-        case 5:
-            nday = "Fri"
         case 6:
+            nday = "Mon"
+        case 5:
+            nday = "Tue"
+        case 4:
+            nday = "Wed"
+        case 3:
+            nday = "Thu"
+        case 2:
+            nday = "Fri"
+        case 1:
             nday = "Sat"
-        case 7:
+        case 0:
             nday = "Sun"
     }
     var day = adj(date.getDate());
