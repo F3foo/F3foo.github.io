@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+body {
+  text-align: center;
+  /*background-image: url('bg.jfif');*/
+  background-color: blueviolet;
+}
+
+#clock {
+  position: relative;
+  top: 20vh;
+  font-family: "Staatliches";
+  font-size: 100px;
+  text-align: center;
+  border: 0px;
+}
+
+#date {
+  position: relative;
+  top: 20vh;
+  font-family: "Staatliches";
+  font-size: 30px;
+  text-align: center;
+  border: 0px;
+}
+
+/*#topLayer {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}*/
+
+#searchbar {
+  position: relative;
+  top: 30vh;
+  font-family: "Special Elite";
+  font-size:30px;
+  text-align: center;
+  border: 0px;
+}
