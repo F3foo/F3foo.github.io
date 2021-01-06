@@ -20,27 +20,18 @@ function adj(k) {
 
 function defDate() {
     var date = new Date();
-    var nday = date.getDay();
-    switch (nday) {
-        case 6:
-            nday = "Mon"
-        case 5:
-            nday = "Tue"
-        case 4:
-            nday = "Wed"
-        case 3:
-            nday = "Thu"
-        case 2:
-            nday = "Fri"
-        case 1:
-            nday = "Sat"
-        case 0:
-            nday = "Sun"
-    }
+    var nday = new Array(7);
+    nday[0] = "Sun";
+    nday[1] = "Mon";
+    nday[2] = "Tue";
+    nday[3] = "Wed";
+    nday[4] = "Thu";
+    nday[5] = "Fri";
+    nday[6] = "Sat";
     var day = adj(date.getDate());
     var mon = adj(date.getMonth()+1);
     var year = adj(date.getFullYear());
-    clock2 = nday + " " + day + "-" + mon + "-" + year;
+    clock2 = nday[date.getDay()] + " " + day + "-" + mon + "-" + year;
     document.getElementById("date").innerText = clock2
     var t = setTimeout(function () { defDate() }, 1000);
 }
