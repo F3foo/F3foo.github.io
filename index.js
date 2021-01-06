@@ -20,6 +20,7 @@ function adj(k) {
 
 function defDate() {
     var date = new Date();
+    var nday = date.getDay();
     switch (nday) {
         case 1:
             nday = "Mon"
@@ -39,7 +40,7 @@ function defDate() {
     var day = adj(date.getDate());
     var mon = adj(date.getMonth()+1);
     var year = adj(date.getFullYear());
-    clock2 = day + "-" + mon + "-" + year;
+    clock2 = nday + " " + day + "-" + mon + "-" + year;
     document.getElementById("date").innerText = clock2
     var t = setTimeout(function () { defDate() }, 1000);
 }
