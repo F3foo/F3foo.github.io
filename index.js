@@ -20,24 +20,22 @@ function adj(k) {
 
 function defDate() {
     var date = new Date();
-/*    var nday = date.getDay()
     switch (nday) {
         case 1:
-            nday = "Lunedì"
+            nday = "Mon"
         case 2:
-            nday = "Martedì"
+            nday = "Tue"
         case 3:
-            nday = "Mercoledì"
+            nday = "Wed"
         case 4:
-            nday = "Giovedì"
+            nday = "Thu"
         case 5:
-            nday = "Venerdì"
+            nday = "Fri"
         case 6:
-            nday = "Sabato"
+            nday = "Sat"
         case 7:
-            nday = "Domenica"
+            nday = "Sun"
     }
-*/
     var day = adj(date.getDate());
     var mon = adj(date.getMonth()+1);
     var year = adj(date.getFullYear());
