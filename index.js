@@ -1,3 +1,6 @@
+localStorage = window.localStorage;
+
+
 //clock and date
 function defTime() {
     var time = new Date();
@@ -50,13 +53,10 @@ document.addEventListener("keydown", function (event) {
                 location = "https://" + input.innerText.replace("!l ", "");
             
             } else if (input.innerText != "Type to search..." && input.innerText.startsWith("!bg ")) {
-                
-                if (input.innerText == "!bg image") {
-                    document.getElementsByTagName("body")[0].style = "background-image: url('bg.jfif')";
-                } else {
-                    color = input.innerText.replace("!bg ", "");
-                    document.getElementsByTagName("body")[0].style = `background-color: ${color}`;
-                }
+
+                color = input.innerText.replace("!bg ", "");
+                document.getElementsByTagName("body")[0].style = `background-color: ${color}`;
+                localStorage.setItem("color", color);
                 input.innerText = "Type to search...";
 
             } else if (input.innerText != "Type to search..." && input.innerText.startsWith("!c ")) {
@@ -66,6 +66,7 @@ document.addEventListener("keydown", function (event) {
                 document.getElementById("date").style.color = color;
                 document.getElementById("searchbar").style.color = color;
                 input.innerText = "Type to search...";
+                localStorage.setItem("c", color);
 
             } else if (input.innerText != "Type to search...") {
 
@@ -152,4 +153,16 @@ document.addEventListener("keydown", function (event) {
         input.innerHTML = "<span style=\"color: #626262;\">" + splitput[0] + "</span> " + splitput.slice(1).join(" ")
     }
 
-}, 1000)
+}, 1000);
+
+//reload
+window.onload = function settings() {
+    var color = localStorage.getItem("color");
+    var url = localStorage.getItem("url");
+    var c = localStorage.getItem("c");
+    console.log(color, c);
+    document.getElementsByTagName("body")[0].style = `background-color: ${color}`; 
+    document.getElementById("clock").style.color = c;
+    document.getElementById("date").style.color = c;
+    document.getElementById("searchbar").style.color = c;
+};
