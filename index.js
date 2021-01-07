@@ -104,6 +104,14 @@ document.addEventListener("keydown", function (event) {
         case " ":
             putSpace = true
             break;
+        
+        case "v":
+            if (event.ctrlKey) {
+                setTimeout(async () => {
+                    const text = await navigator.clipboard.readText();
+                    input.innerText = input.innerText + " " + text;
+                });
+            }
 
         default:
             console.log(event.key)
@@ -129,21 +137,11 @@ document.addEventListener("keydown", function (event) {
     splitput = input.innerText.split(" ")
     splitput[0] = splitput[0] + " "
 
-    if (splitput.length == 1) {
-        toCheck = /\!.*/.exec(input.innerText)
-        if (toCheck != null) {
-            if (toCheck.index === 0) {
-                input.innerHTML = "<span style=\"color: #626262;\">" + input.innerText + "</span>"
-            }
-        }
-    } else {
-        toCheck = /\!.*/.exec(splitput[0])
-        if (toCheck != null) {
-            if (toCheck.index === 0) {
-                input.innerHTML = "<span style=\"color: #626262;\">" + splitput[0] + "</span> " + splitput.slice(1).join(" ")
-            }
-        }
+    toCheck = /^\!.*/.exec(input.innerText)
+    if (splitput.length==1 && toCheck!=null) {
+        input.innerHTML = "<span style=\"color: #626262;\">" + input.innerText + "</span>"
+    } else if (toCheck != null) {
+        input.innerHTML = "<span style=\"color: #626262;\">" + splitput[0] + "</span> " + splitput.slice(1).join(" ")
     }
-
 
 }, 1000)
