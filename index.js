@@ -110,6 +110,14 @@ document.addEventListener("keydown", function (event) {
                 setTimeout(async () => {
                     const text = await navigator.clipboard.readText();
                     input.innerText = input.innerText + " " + text;
+                    splitput = input.innerText.split(" ")
+                    splitput[0] = splitput[0] + " "
+                    toCheck = /^\!.*/.exec(input.innerText)
+                    if (splitput.length == 1 && toCheck != null) {
+                        input.innerHTML = "<span style=\"color: #626262;\">" + input.innerText + "</span>"
+                    } else if (toCheck != null) {
+                        input.innerHTML = "<span style=\"color: #626262;\">" + splitput[0] + "</span> " + splitput.slice(1).join(" ")
+                    }
                 });
             }
 
