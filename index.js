@@ -13,7 +13,7 @@ function defTime() {
 }
 
 function adj(k) {
-    if (k<10) {
+    if (k < 10) {
         return "0" + k;
     }
     else {
@@ -32,7 +32,7 @@ function defDate() {
     nday[5] = "Fri";
     nday[6] = "Sat";
     var day = adj(date.getDate());
-    var mon = adj(date.getMonth()+1);
+    var mon = adj(date.getMonth() + 1);
     var year = adj(date.getFullYear());
     clock2 = nday[date.getDay()] + " " + day + "-" + mon + "-" + year;
     document.getElementById("date").innerText = clock2
@@ -51,12 +51,12 @@ document.addEventListener("keydown", function (event) {
             if (input.innerText != "Type to search..." && input.innerText.startsWith("!l ")) {
 
                 location = "https://" + input.innerText.replace("!l ", "");
-            
+
             } else if (input.innerText != "Type to search..." && input.innerText.startsWith("!bg ")) {
 
                 color = input.innerText.replace("!bg ", "");
                 document.getElementsByTagName("body")[0].style = `background-color: ${color}`;
-                localStorage.setItem("color", color);
+                localStorage.setItem("bg_color", color);
                 input.innerText = "Type to search...";
 
             } else if (input.innerText != "Type to search..." && input.innerText.startsWith("!c ")) {
@@ -66,7 +66,7 @@ document.addEventListener("keydown", function (event) {
                 document.getElementById("date").style.color = color;
                 document.getElementById("searchbar").style.color = color;
                 input.innerText = "Type to search...";
-                localStorage.setItem("c", color);
+                localStorage.setItem("color", color);
 
             } else if (input.innerText != "Type to search...") {
 
@@ -105,21 +105,27 @@ document.addEventListener("keydown", function (event) {
         case " ":
             putSpace = true
             break;
-        
+
         case "v":
             if (event.ctrlKey) {
                 setTimeout(async () => {
                     const text = await navigator.clipboard.readText();
-                    input.innerText = input.innerText + " " + text;
-                    splitput = input.innerText.split(" ")
-                    splitput[0] = splitput[0] + " "
-                    toCheck = /^\!.*/.exec(input.innerText)
+                    if (input.innerText != "Type to search...") {
+                        input.innerText = input.innerText + text;
+                    } else {
+                        input.innerText = text;
+                    }
+                    splitput = input.innerText.split(" ");
+                    splitput[0] = splitput[0] + " ";
                     if (splitput.length == 1 && toCheck != null) {
+                        toCheck = /^\!.*/.exec(input.innerText);
                         input.innerHTML = "<span style=\"color: #626262;\">" + input.innerText + "</span>"
                     } else if (toCheck != null) {
                         input.innerHTML = "<span style=\"color: #626262;\">" + splitput[0] + "</span> " + splitput.slice(1).join(" ")
-                    }
+                    };
+
                 });
+                break;
             }
 
         default:
@@ -147,7 +153,7 @@ document.addEventListener("keydown", function (event) {
     splitput[0] = splitput[0] + " "
 
     toCheck = /^\!.*/.exec(input.innerText)
-    if (splitput.length==1 && toCheck!=null) {
+    if (splitput.length == 1 && toCheck != null) {
         input.innerHTML = "<span style=\"color: #626262;\">" + input.innerText + "</span>"
     } else if (toCheck != null) {
         input.innerHTML = "<span style=\"color: #626262;\">" + splitput[0] + "</span> " + splitput.slice(1).join(" ")
@@ -157,12 +163,11 @@ document.addEventListener("keydown", function (event) {
 
 //reload
 window.onload = function settings() {
+    var bg_color = localStorage.getItem("bg_color");
     var color = localStorage.getItem("color");
-    var url = localStorage.getItem("url");
-    var c = localStorage.getItem("c");
-    console.log(color, c);
-    document.getElementsByTagName("body")[0].style = `background-color: ${color}`; 
-    document.getElementById("clock").style.color = c;
-    document.getElementById("date").style.color = c;
-    document.getElementById("searchbar").style.color = c;
+    console.log(bg_color, color);
+    document.getElementsByTagName("body")[0].style = `background-color: ${bg_color}`;
+    document.getElementById("clock").style.color = color;
+    document.getElementById("date").style.color = color;
+    document.getElementById("searchbar").style.color = color;
 };
