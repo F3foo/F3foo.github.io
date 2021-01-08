@@ -166,8 +166,20 @@ window.onload = function settings() {
     var bg_color = localStorage.getItem("bg_color");
     var color = localStorage.getItem("color");
     console.log(bg_color, color);
-    document.getElementsByTagName("body")[0].style = `background-color: ${bg_color}`;
-    document.getElementById("clock").style.color = color;
-    document.getElementById("date").style.color = color;
-    document.getElementById("searchbar").style.color = color;
+    if (bg_color != null) {
+        console.log("loading saved background");
+        document.getElementsByTagName("body")[0].style = `background-color: ${bg_color}`;
+    } else {
+        document.getElementsByTagName("body")[0].style = `background-color: blueviolet`; 
+    };
+    if (color != null) {
+        console.log("loading saved color")
+        document.getElementById("clock").style.color = color;
+        document.getElementById("date").style.color = color;
+        document.getElementById("searchbar").style.color = color;
+    } else {
+        document.getElementById("clock").style.color = "black";
+        document.getElementById("date").style.color = "black";
+        document.getElementById("searchbar").style.color = "black";
+    };
 };
