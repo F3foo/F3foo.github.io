@@ -13,6 +13,8 @@
 body {
   text-align: center;
   background-color: blueviolet;
+  margin: 0;
+  height: 100%;
 }
 
 #clock {
